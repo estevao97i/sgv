@@ -1,38 +1,31 @@
 package entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class Product implements Serializable {
+@Table(name = "TB_CLIENT")
+public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String nameProduct;
+    private String name;
 
-    @Column
-    private Double valueProduct;
-
-//    @OneToMany
-//    @Column(name = "ID_CATEGORY")
-//    private List<Category> idCategory;
+    private Date birthday;
 }
