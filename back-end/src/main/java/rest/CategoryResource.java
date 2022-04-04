@@ -1,13 +1,13 @@
 package rest;
 
-
-import entities.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.CategoryService;
+import service.DTO.CategoryDTO;
 
 import java.util.List;
 
@@ -19,8 +19,14 @@ public class CategoryResource {
     private final CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> listaCategory = categoryService.findAll();
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<CategoryDTO> listaCategory = categoryService.findAll();
         return ResponseEntity.ok().body(listaCategory);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
+        CategoryDTO categoryDTO = categoryService.findById(id);
+        return ResponseEntity.ok(categoryDTO);
     }
 }
